@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Dashboard</h2>
+
+<p class="text-muted">
+    Centralized student academic management.
+</p>
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Students</h6>
+                <div class="display-6">{{ counts['students'] }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Faculty</h6>
+                <div class="display-6">{{ counts['faculty'] }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Courses</h6>
+                <div class="display-6">{{ counts['courses'] }}</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <h5>Recent Students</h5>
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for s in recent_students %}
+
+                <tr>
+                    <td>{{ s.id }}</td>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.email }}</td>
+                    <td>{{ s.department or '-' }}</td>
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="4">No students found.</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+
+    <div class="col-md-6 col-lg-5">
+
+        <div class="text-center mb-4">
+            <h1 class="fw-bold">LOGIN</h1>
+            <p class="text-muted">Student Management System</p>
+        </div>
+
+        <div class="card shadow border-0">
+
+            <div class="card-body p-4">
+
+                <h5 class="text-center mb-4">
+                    Select your role
+                </h5>
+
+                <form method="post">
+
+                    <div class="row g-2 mb-4">
+
+                        <div class="col-4">
+                            <input type="radio"
+                                   class="btn-check"
+                                   name="role"
+                                   id="admin"
+                                   value="admin"
+                                   autocomplete="off"
+                                   required>
+
+                            <label class="btn btn-outline-primary w-100 py-3"
+                                   for="admin">
+                                👨‍💼<br>
+                                <strong>Admin</strong>
+                            </label>
+                        </div>
+
+                        <div class="col-4">
+                            <input type="radio"
+                                   class="btn-check"
+                                   name="role"
+                                   id="faculty"
+                                   value="faculty"
+                                   autocomplete="off">
+
+                            <label class="btn btn-outline-primary w-100 py-3"
+                                   for="faculty">
+                                👨‍🏫<br>
+                                <strong>Faculty</strong>
+                            </label>
+                        </div>
+
+                        <div class="col-4">
+                            <input type="radio"
+                                   class="btn-check"
+                                   name="role"
+                                   id="student"
+                                   value="student"
+                                   autocomplete="off">
+
+                            <label class="btn btn-outline-primary w-100 py-3"
+                                   for="student">
+                                🎓<br>
+                                <strong>Student</strong>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Email
+                        </label>
+
+                        <input class="form-control"
+                               name="email"
+                               type="email"
+                               placeholder="Enter your email"
+                               required>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label fw-semibold">
+                            Password
+                        </label>
+
+                        <input class="form-control"
+                               name="password"
+                               type="password"
+                               placeholder="Enter your password"
+                               required>
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-primary w-100 py-2">
+                        Login
+                    </button>
+
+                </form>
+
+                <p class="text-center text-muted small mt-4 mb-0">
+                    Select the role associated with your account.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<h2>Courses</h2><table class="table table-striped"><tr><th>Code</th><th>Course</th><th>Credits</th><th>Department</th><th>Students</th></tr>{% for c in courses %}<tr><td>{{c.code}}</td><td>{{c.name}}</td><td>{{c.credits}}</td><td>{{c.department or '-'}}</td><td>{{c.student_count}}</td></tr>{% endfor %}</table>{% endblock %}

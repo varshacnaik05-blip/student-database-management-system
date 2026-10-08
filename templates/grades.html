@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}Grades{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Grades</h2>
+
+{% if session.get('role') in ['admin', 'faculty'] %}
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <h5 class="mb-3">Add Grade</h5>
+
+        <form method="POST">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">Student</label>
+
+                    <select name="student_id"
+                            class="form-select"
+                            required>
+
+                        <option value="">Select Student</option>
+
+                        {% for student in students %}
+
+                        <option value="{{ student.id }}">
+                            {{ student.student_number }} - {{ student.name }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">Course</label>
+
+                    <select name="course_id"
+                            class="form-select"
+                            required>
+
+                        <option value="">Select Course</option>
+
+                        {% for course in courses %}
+
+                        <option value="{{ course.id }}">
+                            {{ course.name }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">Exam Type</label>
+
+                    <select name="exam_type"
+                            class="form-select"
+                            required>
+
+                        <option value="Internal">Internal</option>
+                        <option value="Midterm">Midterm</option>
+                        <option value="Final">Final</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">Marks</label>
+
+                    <input type="number"
+                           name="marks"
+                           class="form-control"
+                           min="0"
+                           step="0.01"
+                           required>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">Maximum Marks</label>
+
+                    <input type="number"
+                           name="max_marks"
+                           class="form-control"
+                           min="1"
+                           step="0.01"
+                           required>
+
+                </div>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                Add Grade
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <h5 class="mb-3">Grade Records</h5>
+
+        {% if grades %}
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead>
+
+                    <tr>
+                        <th>Student</th>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Exam Type</th>
+                        <th>Marks</th>
+                        <th>Maximum Marks</th>
+                        <th>Percentage</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for row in grades %}
+
+                    <tr>
+
+                        <td>{{ row.student_number }}</td>
+
+                        <td>{{ row.name }}</td>
+
+                        <td>{{ row.course }}</td>
+
+                        <td>{{ row.exam_type }}</td>
+
+                        <td>{{ row.marks }}</td>
+
+                        <td>{{ row.max_marks }}</td>
+
+                        <td>
+                            {% if row.max_marks %}
+                                {{ "%.2f"|format((row.marks / row.max_marks) * 100) }}%
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p class="text-muted">
+            No grade records available.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
